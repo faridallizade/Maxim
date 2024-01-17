@@ -10,7 +10,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>DarkPan - Bootstrap 5 Admin Template</title>
+    <title>Maxim Login</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -51,40 +51,40 @@
         <div class="container-fluid">
             <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
                 <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
-                    <form method="post">
+                    <form method="post" >
                     <div class="bg-secondary rounded p-4 p-sm-5 my-4 mx-3">
                         <div class="d-flex align-items-center justify-content-between mb-3">
                             <a href="index.html" class="">
                                 <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>Maxim</h3>
                             </a>
-                            <h3>Sign Up</h3>
+                            <h3>Register</h3>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" placeholder="Farid">
-                            <label for="floatingText">Name</label>
+                            <input asp-for="Name" type="text" class="form-control" placeholder="Farid">
+                                <label asp-for="Name">Name</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" placeholder="Alizade">
-                            <label for="floatingText">Surname</label>
+                                <input asp-for="Surname" type="text" class="form-control" placeholder="Alizade">
+                                <label asp-for="Surname">Surname</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" placeholder="50zade">
-                            <label for="floatingText">Username</label>
+                                <input asp-for="Username" type="text" class="form-control" placeholder="50zade">
+                                <label asp-for="Username">Username</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" placeholder="farid@example.com">
-                            <label for="floatingInput">Email address</label>
+                            <input asp-for="Email" type="email" class="form-control" placeholder="farid@example.com">
+                                <label asp-for="Email">Email address</label>
                         </div>
                         <div class="form-floating mb-4">
-                            <input type="password" class="form-control" placeholder="Password">
-                            <label for="floatingPassword">Password</label>
+                                <input asp-for="Password" type="password" class="form-control" placeholder="Password">
+                                <label asp-for="Password">Password</label>
                         </div>
                         <div class="form-floating mb-4">
-                            <input type="password" class="form-control" placeholder="Password">
-                            <label for="floatingPassword">Confirm Password</label>
+                                <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Password">
+                                <label asp-for="ConfirmPassword">Confirm Password</label>
                         </div>
-                        <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Sign Up</button>
-                        <p class="text-center mb-0">Already have an Account? <a href="">Sign In</a></p>
+                        <button asp-controller="Account" asp-action="Login" type="submit" class="btn btn-primary py-3 w-100 mb-4">Register</button>
+                            <p class="text-center mb-0">Already have an Account? <a asp-controller="Account" asp-action="Login">Sign In</a></p>
                     </div>
                     </form>
                 </div>

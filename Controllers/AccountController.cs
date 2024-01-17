@@ -1,4 +1,5 @@
-﻿using Maxim.Models;
+﻿using Maxim.Helpers;
+using Maxim.Models;
 using Maxim.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -46,7 +47,7 @@ namespace Maxim.Controllers
                 }
             }
             
-            return RedirectToAction("Login","Account");
+            return RedirectToAction("Index","Home");
 
         }
         public IActionResult Login()
@@ -56,15 +57,15 @@ namespace Maxim.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginVm vm)
         {
-            var user = _userManager.FindByEmailAsync(vm.UsernameOrEmail);
+            var user =await _userManager.FindByEmailAsync(vm.UsernameOrEmail);
             if (user == null)
             {
-                user = _userManager.FindByNameAsync(vm.UsernameOrEmail);
+                user = await _userManager.FindByNameAsync(vm.UsernameOrEmail);
                 if (user == null) throw new Exception("Email Adress Or Username is incorrect");
             }
-            var result = await _signInManager.CheckPasswordSignInAsync(await user, vm.Password, false);
+            var result = await _signInManager.CheckPasswordSignInAsync(user, vm.Password, false);
             if (!result.Succeeded) { throw new Exception("Email Adress Or Username is incorrect"); }
-            await _signInManager.SignInAsync(await user, false);
+            await _signInManager.SignInAsync( user, false);
             return RedirectToAction("Index","Home");
         }
         public async Task<IActionResult> Logout()
@@ -72,9 +73,19 @@ namespace Maxim.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index","Home");
         }
-        public IActionResult CreateRole()
+        public async Task<IActionResult> CreateRole()
         {
-            return View();
+            foreach (var role in Enum.GetNames(typeof(UserRole)))
+            {
+                if ((await _roleManager.FindByNameAsync(role.ToString()) == null))
+                {
+                    await _roleManager.CreateAsync(new IdentityRole()
+                    {
+                        Name = role.ToString(),
+                    });
+                }
+            }
+            return RedirectToAction("Index","Home");
         }
     }
 }
