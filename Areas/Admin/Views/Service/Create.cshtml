@@ -2,7 +2,7 @@
 @model CreateServiceVm;
 
 
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     <div class="mb-3">
         <label asp-for="Title"  class="form-label">Enter Title</label>
         <input asp-for="Title" type="text" class="form-control" aria-describedby="emailHelp">
@@ -16,6 +16,8 @@
         <input asp-for="Icon" type="text" class="form-control" aria-describedby="emailHelp">
     </div>
 
+    <div style="margin-left:45%">
+    <button asp-action="Create" asp-controller="Service" type="submit" class="btn btn-primary">Create</button>
 
-    <button asp-action="Index" asp-controller="Service" type="submit" class="btn btn-primary">Create</button>
+    </div>
 </form>
