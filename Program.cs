@@ -24,6 +24,7 @@ namespace Maxim
                 options.Password.RequiredLength = 6;
                 options.Password.RequiredUniqueChars = 1;
             }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+
             var app = builder.Build();
 
             if (!app.Environment.IsDevelopment())
