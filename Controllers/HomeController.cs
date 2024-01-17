@@ -18,7 +18,7 @@ namespace Maxim.Controllers
         public async Task<IActionResult> Index()
         {
             List<Service> services = await _context.services.ToListAsync();
-            return View();
+            return View(services);
         }
 
       
